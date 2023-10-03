@@ -1,10 +1,10 @@
 import "./App.css";
-import ProductList from "./components/product/ProductList";
+import Shop from "./pages/Shop";
 
 function App() {
   return (
-    <div className="App mx-auto">
-      <ProductList />
+    <div className="container mx-auto">
+      <Shop />
     </div>
   );
 }

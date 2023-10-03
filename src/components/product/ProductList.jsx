@@ -1,35 +1,32 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setTitle } from "../../store/features/product/productSlice";
+import { useSelector } from "react-redux";
+import Buttons from "./Buttons";
 const ProductList = () => {
-  const [label, setLabel] = useState("");
-  const { title, products } = useSelector((state) => state.product);
-  const { title: titleblog } = useSelector((state) => state.blog);
-  const dispatch = useDispatch();
-  const changeTitle = () => {
-    dispatch(setTitle(label));
-  };
+  const { products } = useSelector((state) => state.product);
+
   return (
     <>
-      <div className="my-3 mx-auto">
-        <h1>{title}</h1>
-        <input
-          type="text"
-          value={label}
-          onChange={(e) => setLabel(e.target.value)}
-        />
-        <button className="btn-primary" onClick={changeTitle}>
-          Click here
-        </button>
-        <h2>{titleblog}</h2>
-        <div className="div">
-          <ul>
-            {products.map((product) => (
-              <li key={product.id}> {product.title}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      {/* (table.table.table-dark>(thead>tr>th{Title}+th{Price})+(tbody>tr>td*3)) */}
+
+      <table className="table table-dark">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>{product.title}</td>
+              <td>{product.price}</td>
+              <td className="text-end">
+                <Buttons data={product} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };
