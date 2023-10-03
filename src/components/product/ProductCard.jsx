@@ -1,12 +1,14 @@
 import React from "react";
+import Buttons from "./Buttons";
 
 const ProductCard = ({ data: product }) => {
   return (
     <>
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">{product.title}</h4>
-          <p class="card-text">{product.price}</p>
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title">{product.title}</h5>
+          <p className="card-text">{product.price}</p>
+          <Buttons data={product} />
         </div>
       </div>
     </>
