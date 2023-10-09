@@ -1,26 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { storeProduct } from "../../store/features/product/productActions";
 import {
-  persistProduct,
+  setProduct,
   updateProduct,
 } from "../../store/features/product/productSlice";
 
 const ProductForm = () => {
-  const { productUpdated, edit } = useSelector((state) => state.product);
-  console.log(productUpdated);
+  const { product, edit } = useSelector((state) => state.product);
+
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
-  const data = { title, price };
   const submit = (e) => {
     e.preventDefault();
     if (edit) {
-      dispatch(updateProduct(data));
+      dispatch(updateProduct(product));
     } else {
-      dispatch(persistProduct(data));
+      dispatch(storeProduct(product));
     }
-    setTitle("");
-    setPrice(0);
   };
   return (
     <>
@@ -37,8 +33,10 @@ const ProductForm = () => {
             <div className="form-group my-3">
               <label htmlFor="title"> Title</label>
               <input
-                value={title || productUpdated.title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={product.title}
+                onChange={({ target: { name, value } }) =>
+                  dispatch(setProduct({ name, value }))
+                }
                 type="text"
                 name="title"
                 id="title"
@@ -48,8 +46,10 @@ const ProductForm = () => {
             <div className="form-group my-3">
               <label htmlFor=""> Price</label>
               <input
-                value={price || productUpdated.price}
-                onChange={(e) => setPrice(e.target.value)}
+                value={product.price}
+                onChange={({ target: { name, value } }) =>
+                  dispatch(setProduct({ name, value }))
+                }
                 type="number"
                 name="price"
                 id="price"

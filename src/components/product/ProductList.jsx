@@ -10,6 +10,7 @@ const ProductList = () => {
       <table className="table table-dark">
         <thead>
           <tr>
+            <th>Brand</th>
             <th>Title</th>
             <th>Price</th>
             <th></th>
@@ -18,6 +19,14 @@ const ProductList = () => {
         <tbody>
           {products.map((product) => (
             <tr key={product.id}>
+              <td>
+                <img
+                  width="200px"
+                  height="100px"
+                  alt="img"
+                  src={product.thumbnail}
+                />
+              </td>
               <td>{product.title}</td>
               <td>{product.price}</td>
               <td className="text-end">

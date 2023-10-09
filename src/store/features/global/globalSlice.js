@@ -10,6 +10,7 @@ const globalSlice = createSlice({
     reducers: {
         ChangeButton: (state, action) => {
             state.buttonClicked = !action.payload
+
         }
     }
 })

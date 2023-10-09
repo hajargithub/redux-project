@@ -8,10 +8,10 @@ const ProductGrid = () => {
 
   return (
     <>
-      <div className="row my-3">
+      <div className="row my-4">
         {products.map((product, index) => (
-          <div className="col-md-4 border" key={index}>
-            <ProductCard data={product} />
+          <div className="col-md-3 my-2 ">
+            <ProductCard data={product} key={index} />
           </div>
         ))}
       </div>

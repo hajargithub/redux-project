@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import blogSlice from "./features/blog/blogSlice";
 import globalSlice from "./features/global/globalSlice.js";
+import panierSlice from "./features/panier/panierSlice.js";
 import productSlice from "./features/product/productSlice";
 import userSlice from "./features/user/userSlice";
 
@@ -9,7 +9,7 @@ const store = configureStore({
         product: productSlice,
         user: userSlice,
         global: globalSlice,
-        blog: blogSlice
+        panier: panierSlice
     },
 })
 export default store;
