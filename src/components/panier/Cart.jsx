@@ -23,8 +23,7 @@ const Cart = ({ data: panier }) => {
           />
         </div>
         <div className="col-md-3 col-lg-3 col-xl-3">
-          <h6 className="text-muted">{panier.title}</h6>
-          <h6 className="text-black mb-0">Cotton T-shirt</h6>
+          <h6 className="text-black mb-0">{panier.title}</h6>
         </div>
         <div className="col-md-3 col-lg-3 col-xl-3 d-flex align-items-center">
           <button

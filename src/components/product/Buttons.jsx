@@ -34,7 +34,7 @@ const Buttons = ({ data: product }) => {
       <button
         className="btn btn-sm btn-danger"
         onClick={() => {
-          dispatch(deleteProductById(product.id));
+          dispatch(deleteProduct(product.id));
         }}
       >
         Delete
