@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Buttons from "./Buttons";
 import ProductCard from "./ProductCard";
 
 const ProductGrid = () => {
@@ -8,7 +7,7 @@ const ProductGrid = () => {
 
   return (
     <>
-      <div className="row my-4">
+      <div className="row">
         {products.map((product, index) => (
           <div className="col-md-3 my-2 ">
             <ProductCard data={product} key={index} />

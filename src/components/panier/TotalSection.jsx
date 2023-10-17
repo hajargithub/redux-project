@@ -13,7 +13,7 @@ const TotalSection = () => {
             <h5 className="text-uppercase">Total Price</h5>
             <h5>{totalpanier} DH</h5>
           </div>
-          <button className="btn btn-dark btn-block btn-lg">Register</button>
+          <button className="btn btn-primary btn-block btn-lg">Valider</button>
         </div>
       </div>
     </>

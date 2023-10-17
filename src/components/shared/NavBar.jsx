@@ -1,10 +1,19 @@
 import React from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../../store/features/user/authSlice";
 
 function Navbar() {
   const { lengthpanier } = useSelector((state) => state.panier);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { token, infoUser } = useSelector((state) => state.auth);
+
+  const signout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <>
@@ -31,6 +40,16 @@ function Navbar() {
                   className={`nav-link ${({ isActive }) =>
                     isActive && "active"}`}
                   to="/"
+                  aria-current="page"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className={`nav-link ${({ isActive }) =>
+                    isActive && "active"}`}
+                  to="/shop"
                   aria-current="page"
                 >
                   Shop
@@ -65,6 +84,30 @@ function Navbar() {
                   <span class="badge badge-light ">{lengthpanier}</span>
                 </NavLink>
               </li>
+            </ul>
+            <ul className="navbar-nav ms-auto">
+              {token && (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="/login" className="nav-link">
+                      {infoUser.username}
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <button className="nav-link" onClick={signout}>
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
+
+              {!token && (
+                <li className="nav-item">
+                  <NavLink to="/login" className="nav-link">
+                    Login
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>

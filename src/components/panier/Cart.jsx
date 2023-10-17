@@ -10,7 +10,6 @@ import {
 import TotalSection from "./TotalSection";
 
 const Cart = ({ data: panier }) => {
-  const { qt } = useSelector((state) => state.panier);
   const dispatch = useDispatch();
   return (
     <>

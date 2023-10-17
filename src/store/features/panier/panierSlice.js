@@ -48,7 +48,7 @@ const panierSlice = createSlice({
         decrementQt: (state, action) => {
             state.panier = state.panier.map(item => {
                 if (item.id === action.payload.id && item.qt > 1) {
-                    item.qt -= 1;
+                    item.qt -= 1; //item.qt = item.qt-1
                     item.totalprice -= action.payload.price;
                 }
                 return item;

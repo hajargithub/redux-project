@@ -17,23 +17,26 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>
-                <img
-                  width="200px"
-                  height="100px"
-                  alt="img"
-                  src={product.thumbnail}
-                />
-              </td>
-              <td>{product.title}</td>
-              <td>{product.price}</td>
-              <td className="text-end">
-                <Buttons data={product} />
-              </td>
-            </tr>
-          ))}
+          {
+            // products.lenght &&
+            products.map((product) => (
+              <tr key={product.id}>
+                <td>
+                  <img
+                    width="200px"
+                    height="100px"
+                    alt="img"
+                    src={product.thumbnail}
+                  />
+                </td>
+                <td>{product.title}</td>
+                <td>{product.price}</td>
+                <td className="text-end">
+                  <Buttons data={product} />
+                </td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </>

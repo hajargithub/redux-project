@@ -1,9 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../../../util/api";
 
+const moduleName = '/products'
 export const getAllProducts = createAsyncThunk('product/getAllProducts', async () => {
     try {
-        const { data } = await axios.get('https://dummyjson.com/products')
+        const { data } = await api.get(moduleName)
+        console.log("data", data)
         return data.products;
 
     } catch (error) {
@@ -24,7 +26,7 @@ export const getAllProducts = createAsyncThunk('product/getAllProducts', async (
 // })
 export const deleteProductById = createAsyncThunk('product/deleteProductById', async (id) => {
     try {
-        const { data } = await axios.delete(`https://dummyjson.com/products/${id}`)
+        const { data } = await api.delete(`${moduleName}${id}`)
         return data;
 
     } catch (error) {
@@ -33,7 +35,7 @@ export const deleteProductById = createAsyncThunk('product/deleteProductById', a
 })
 export const storeProduct = createAsyncThunk('product/storeProduct', async (newProduct) => {
     try {
-        const { data } = await axios.post('https://dummyjson.com/products/add', newProduct)
+        const { data } = await api.post(`${moduleName}/add`, newProduct)
         return data;
 
     } catch (error) {

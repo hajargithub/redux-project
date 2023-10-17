@@ -1,16 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import lodash from 'lodash'
+import { createSlice } from "@reduxjs/toolkit"
 import { deleteProductById, getAllProducts, storeProduct } from "./productActions"
 
 const initialState = {
-    khadija: "Khadija",
     errorMessage: '',
     isLoading: false,
     edit: false,
-    products: [
-        { id: 1, title: 'Iphone', price: 25 },
-        { id: 2, title: 'Samsang', price: 30 },
-        { id: 3, title: 'Huawei', price: 40 },
-    ],
+    products: [],
     product: {
         id: 0,
         title: '',
@@ -68,17 +64,23 @@ const productSlice = createSlice({
         [getAllProducts.pending]: (state) => {
             console.log("pending")
             state.isLoading = true
+            state.errorMessage = ''
 
         },
         [getAllProducts.fulfilled]: (state, action) => {
             console.log('payload fav', action.payload)
             state.isLoading = false
-            state.products = action.payload
+            if (lodash.isArray(action.payload)) {
+                state.products = action.payload
+            }
+            if (lodash.isString(action.payload)) {
+                state.errorMessage = action.payload
+            }
 
         },
         [getAllProducts.rejected]: (state, action) => {
             state.isLoading = false
-            state.errorMessage = action.payload
+            state.errorMessage = action.payload.error
         },
         [deleteProductById.pending]: (state) => {
             console.log("pending")
